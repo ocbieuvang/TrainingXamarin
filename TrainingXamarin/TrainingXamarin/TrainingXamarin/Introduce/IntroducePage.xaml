@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrainingXamarin.Introduce.IntroducePage" xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" Android=" 0, 0, 0, 0" />
+    </ContentPage.Padding>
+    <StackLayout>
+        <controls:CarouselViewControl x:Name="Carousel_View" Position="{Binding Position, Mode=TwoWay}" VerticalOptions="FillAndExpand" CurrentPageIndicatorTintColor="#ff3366" ShowIndicators="true" Orientation="Horizontal" InterPageSpacing="10" ItemsSource="{Binding Items}" HorizontalOptions="FillAndExpand">
+            <controls:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                            <Image Source="{Binding Image}" />
+                            <Label Margin="20" TextColor="Black" Text="{Binding Content}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Fill" />
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </controls:CarouselViewControl.ItemTemplate>
+        </controls:CarouselViewControl>
+        <Button Margin="0" BorderRadius="0" BorderWidth="0" Command="{Binding OnNextClick}" FontAttributes="Bold" HeightRequest="50" BackgroundColor="#ff3366" Text="{Binding BtnName}" TextColor="White" />
+    </StackLayout>
+</ContentPage>
