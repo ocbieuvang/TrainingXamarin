@@ -8,7 +8,7 @@ namespace TrainingXamarin
         {
             InitializeComponent();
 
-            MainPage = new TrainingXamarinPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
