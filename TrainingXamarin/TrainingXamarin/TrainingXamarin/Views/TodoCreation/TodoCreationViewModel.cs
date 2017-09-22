@@ -19,10 +19,12 @@ namespace TrainingXamarin.TodoCreation
 
             OnSaveClick = new Command((nothing) =>
             {
-                if (Todo == null) return;
+                if (Todo == null || contentPage == null) return;
                 Todo.From = DateFrom.Add(TimeFrom);
                 Todo.To = DateTo.Add(TimeTo);
                 App.Database.SaveItemAsync(Todo);
+                //var stack = contentPage.Navigation.NavigationStack;
+                contentPage.Navigation.PopAsync();
 			});
         }
 
