@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrainingXamarin.TodoCreation.TodoCreationPage">
+    <ContentPage.Content>
+        <RelativeLayout>
+            <Image Source="bg_mountain.png" Aspect="Fill" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.3}" />
+            <Entry BackgroundColor="Transparent" Text="{Binding Todo.Title}" WidthRequest="200" Margin="10, 0" Placeholder="Add Title" FontSize="18" TextColor="Black" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}" />
+            <StackLayout RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.3,Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+                <Entry Text="{Binding Todo.Description}" Placeholder="Short Description" FontSize="13" />
+                <Label HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#f5f4f6" Margin="0, 10" />
+                <Grid Margin="10, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Label VerticalOptions="CenterAndExpand" Text="From" Grid.Row="0" Grid.Column="0"/>
+                    <DatePicker Date="{Binding DateFrom}" Grid.Row="0" Grid.Column="1" />
+                    <TimePicker Time="{Binding TimeFrom}" Grid.Row="0" Grid.Column="2" />
+                    <Label VerticalOptions="CenterAndExpand" Text="To" Grid.Row="1" Grid.Column="0" />
+                    <DatePicker Date="{Binding DateTo}" Grid.Row="1" Grid.Column="1" />
+                    <TimePicker Time="{Binding TimeTo}" Grid.Row="1" Grid.Column="2" />
+                </Grid>
+                <Label HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#f5f4f6" />
+                <StackLayout Margin="10, 0" Orientation="Horizontal">
+                    <Label Text="Done" />
+                    <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Todo.IsDone}" />
+                </StackLayout>
+            </StackLayout>
+            <Button BorderRadius="0" Command="{Binding OnSaveClick}" Text="Save" BackgroundColor="#ff3366" TextColor="White" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.9,Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}" />
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

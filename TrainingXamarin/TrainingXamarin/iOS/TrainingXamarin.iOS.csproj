@@ -112,10 +112,13 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\icon_calender.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bg_mountain.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bg_mountain.imageset\bg_mountain.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Assets.xcassets\icon_calender.imageset\" />
+    <Folder Include="Assets.xcassets\bg_mountain.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

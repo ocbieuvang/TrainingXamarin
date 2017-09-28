@@ -40,6 +40,9 @@
     <EmbeddedResource Include="Introduce\IntroducePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="TodoCreation\TodoCreationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
@@ -68,6 +71,12 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="BaseViewModel.cs" />
+    <Compile Include="TodoCreation\TodoCreationPage.xaml.cs">
+      <DependentUpon>TodoCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TodoCreation\TodoCreationViewModel.cs" />
+    <Compile Include="Model\Todo.cs" />
+    <Compile Include="Model\BaseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CarouselView.FormsPlugin.Abstractions">
@@ -92,6 +101,7 @@
     <Folder Include="Introduce\" />
     <Folder Include="Model\" />
     <Folder Include="Views\" />
+    <Folder Include="TodoCreation\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
