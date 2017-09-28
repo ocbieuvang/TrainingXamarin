@@ -1,4 +1,5 @@
 ﻿using System;
+using TrainingXamarin.Introduce;
 using Xamarin.Forms;
 
 namespace TrainingXamarin
@@ -20,7 +21,7 @@ namespace TrainingXamarin
             {
                 if (i == 0)
                 {
-                    await Navigation.PushAsync(new IntroPage());
+                    await Navigation.PushAsync(new IntroducePage());
                 }
                 else
                 {

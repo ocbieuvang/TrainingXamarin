@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using TrainingXamarin.Introduce;
+using Xamarin.Forms;
 
 namespace TrainingXamarin
 {

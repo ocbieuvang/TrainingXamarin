@@ -188,3 +188,4 @@ FakesAssemblies/
 /packages
 
 *.userprefs
+*.DS_Store
