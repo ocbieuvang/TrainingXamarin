@@ -1,4 +1,5 @@
 ﻿using System;
+using SQLite;
 
 namespace TrainingXamarin.Model
 {
@@ -9,6 +10,9 @@ namespace TrainingXamarin.Model
         private DateTime mFrom;
         private DateTime mTo;
         private bool mIsDone;
+
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
 
         public string Title
         {

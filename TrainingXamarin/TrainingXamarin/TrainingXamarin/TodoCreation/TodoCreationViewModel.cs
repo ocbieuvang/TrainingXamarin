@@ -22,7 +22,7 @@ namespace TrainingXamarin.TodoCreation
                 if (Todo == null) return;
                 Todo.From = DateFrom.Add(TimeFrom);
                 Todo.To = DateTo.Add(TimeTo);
-				//Todo: Save mTodo to Local Database
+                App.Database.SaveItemAsync(Todo);
 			});
         }
 
