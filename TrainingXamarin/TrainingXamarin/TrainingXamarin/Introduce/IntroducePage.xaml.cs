@@ -4,7 +4,7 @@ namespace TrainingXamarin.Introduce
 {
     public partial class IntroducePage : ContentPage
     {
-        public IntroduceViewModel mViewModel;
+        private IntroduceViewModel mViewModel;
 
         public IntroducePage()
         {
