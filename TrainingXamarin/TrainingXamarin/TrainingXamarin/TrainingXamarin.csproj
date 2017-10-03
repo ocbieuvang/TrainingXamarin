@@ -30,22 +30,31 @@
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
     <EmbeddedResource Include="TrainingXamarinPage.xaml" />
-    <EmbeddedResource Include="LoginPage\LoginPage.xaml">
+    <EmbeddedResource Include="Views\IntroPage\IntroPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginPage\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <CustomToolNamespace>Embedded resource</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainPage\MainPage.xaml">
+    <EmbeddedResource Include="Views\MenuPage\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Introduce\IntroducePage.xaml">
+    <EmbeddedResource Include="Views\MainPage\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TodoCreation\TodoCreationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <LogicalName>TrainingXamarin.MainPage.MainPage.xaml</LogicalName>
+      <CustomToolNamespace>Embedded resource</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomView\HorizontalListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Introduce\IntroducePage.xaml" />
+    <EmbeddedResource Include="Views\TodoCreation\TodoCreationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -56,29 +65,52 @@
       <DependentUpon>TrainingXamarinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LoginPage\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
+    <Compile Include="Views\IntroPage\IntroPage.xaml.cs">
+      <DependentUpon>..\..\IntroPage\IntroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Introduce\IntroducePage.xaml.cs">
-      <DependentUpon>IntroducePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Introduce\IntroduceViewModel.cs" />
     <Compile Include="Model\Intro.cs" />
     <Compile Include="AppResources.Designer.cs">
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="BaseViewModel.cs" />
-    <Compile Include="TodoCreation\TodoCreationPage.xaml.cs">
-      <DependentUpon>TodoCreationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TodoCreation\TodoCreationViewModel.cs" />
     <Compile Include="Model\Todo.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="IFileHelper.cs" />
     <Compile Include="Data\TodoDataBase.cs" />
+    <Compile Include="Views\LoginPage\LoginPage.xaml.cs">
+      <DependentUpon>..\..\LoginPage\LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage\MainPage.xaml.cs">
+      <DependentUpon>..\..\MainPage\MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuPage\MenuPage.xaml.cs">
+      <DependentUpon>..\..\MenuPage\MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MonthYears.cs" />
+    <Compile Include="Views\MainPage\MainPageViewModel.cs" />
+    <Compile Include="CustomView\HorizontalListView.xaml.cs" />
+    <Compile Include="Views\Introduce\IntroducePage.xaml.cs">
+      <DependentUpon>..\..\Introduce\IntroducePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Introduce\IntroduceViewModel.cs" />
+    <Compile Include="Views\TodoCreation\TodoCreationPage.xaml.cs">
+      <DependentUpon>..\..\TodoCreation\TodoCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TodoCreation\TodoCreationViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\IntroPage\" />
+    <Folder Include="Views\LoginPage\" />
+    <Folder Include="Views\MainPage\" />
+    <Folder Include="Views\MenuPage\" />
+    <Folder Include="CustomView\" />
+    <Folder Include="Views\IntroPage\New Folder\" />
+    <Folder Include="Views\Introduce\" />
+    <Folder Include="Views\TodoCreation\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CarouselView.FormsPlugin.Abstractions">
@@ -92,6 +124,16 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.270\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="CarouselView.FormsPlugin.Abstractions">
+      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.3\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.core">
       <HintPath>..\packages\SQLitePCLRaw.core.1.1.5\lib\portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
@@ -110,14 +152,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LoginPage\" />
-    <Folder Include="MainPage\" />
-    <Folder Include="Introduce\" />
     <Folder Include="Model\" />
     <Folder Include="Views\" />
-    <Folder Include="TodoCreation\" />
     <Folder Include="Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\search.png" />
+    <None Include="Resources\Images\background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>

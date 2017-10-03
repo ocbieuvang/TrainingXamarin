@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrainingXamarin.MainPage" NavigationPage.HasNavigationBar="False" xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions" xmlns:Controls="clr-namespace:TrainingXamarin.CustomView;" BackgroundImage="header_bg">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0" />
+    </ContentPage.Padding>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0">
+            <Label Text="Good Morning!" HorizontalOptions="CenterAndExpand" TextColor="White" Margin="0,20,0,0" />
+            <Image Source="avatar_header.png" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Image="arrow_left.png" Command="{Binding Prev_Button_Clicked}" Grid.Row="0" Grid.Column="0" />
+            <controls:CarouselViewControl x:Name="myCarousel" AnimateTransition="true" IsSwipingEnabled="false" Orientation="Horizontal" Position="{Binding Position}" ItemsSource="{Binding Items}" ShowIndicators="false" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0"
+                Grid.Column="1" Margin="0,15,0,0">
+                <controls:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding .}" TextColor="White" HorizontalOptions="CenterAndExpand" />
+                        </StackLayout>
+                    </DataTemplate>
+                </controls:CarouselViewControl.ItemTemplate>
+            </controls:CarouselViewControl>
+            <Button Image="arrow_right.png" Command="{Binding Next_Button_Clicked}" Grid.Row="0" Grid.Column="2" />
+        </Grid>
+        <StackLayout Grid.Row="2" BackgroundColor="White" Margin="0,0,0,-10" Spacing="0" >
+            <Controls:HorizontalListView ItemsSource="{Binding DaysInMonth}" SelectedCommand="{Binding ClickCommand}" Padding="10,0,10,0"  />
+        </StackLayout>
+        <RelativeLayout Grid.Row="3" BackgroundColor="White" Margin="0">
+            <ListView ItemsSource="{Binding ListToDo}" HasUnevenRows="true" Margin="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" />
+                            <Grid VerticalOptions="FillAndExpand" Padding="0,20,0,20">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="avatar.png" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" />
+                                <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" HeightRequest="20" VerticalOptions="CenterAndExpand" />
+                                <Label Text="{Binding From, StringFormat='{0:MMMM d}'}" Grid.Row="1" Grid.Column="1" HeightRequest="20" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Image="button.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" Margin="20" Clicked="Add_Work_Button" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" />
+        </RelativeLayout>
+    </Grid>
+</ContentPage>

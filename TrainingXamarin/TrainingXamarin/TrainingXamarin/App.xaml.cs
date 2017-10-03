@@ -11,7 +11,7 @@ namespace TrainingXamarin
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new MenuPage();
         }
 
         public static TodoDataBase Database
