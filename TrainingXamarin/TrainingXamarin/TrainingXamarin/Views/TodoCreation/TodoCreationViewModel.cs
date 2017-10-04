@@ -17,15 +17,32 @@ namespace TrainingXamarin.TodoCreation
         {
             Todo = new Todo();
 
+            DateFrom = DateTime.Now;
+            DateTo = DateTime.Now;
+            TimeFrom = DateTime.Now.TimeOfDay;
+            TimeTo = DateTime.Now.TimeOfDay;
+
             OnSaveClick = new Command((nothing) =>
             {
                 if (Todo == null || contentPage == null) return;
                 Todo.From = DateFrom.Add(TimeFrom);
                 Todo.To = DateTo.Add(TimeTo);
+
+                if (Todo.From.Second < DateTime.Now.Second ||
+                    Todo.To.Second < DateTime.Now.Second ||
+                    Todo.From.Second > Todo.To.Second ||
+                    String.IsNullOrEmpty(Todo.Title))
+                {
+                    contentPage.DisplayAlert("Warning", 
+                                             "1.Please enter \"Title\"\n" +
+                                             "2.Time To > Date From \n" +
+                                             "3.Time > Time Now", "OK");
+                    return;
+                }
+
                 App.Database.SaveItemAsync(Todo);
-                //var stack = contentPage.Navigation.NavigationStack;
                 contentPage.Navigation.PopAsync();
-			});
+            });
         }
 
         public Todo Todo
