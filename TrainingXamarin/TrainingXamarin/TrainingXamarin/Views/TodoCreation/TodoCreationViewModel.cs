@@ -23,7 +23,6 @@ namespace TrainingXamarin.TodoCreation
                 Todo.From = DateFrom.Add(TimeFrom);
                 Todo.To = DateTo.Add(TimeTo);
                 App.Database.SaveItemAsync(Todo);
-                //var stack = contentPage.Navigation.NavigationStack;
                 contentPage.Navigation.PopAsync();
 			});
         }

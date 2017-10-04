@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
 using TrainingXamarin.Model;
@@ -24,6 +25,12 @@ namespace TrainingXamarin.Data
         {
             return mDatabase.QueryAsync<Todo>("SELECT * FROM [Todo] WHERE [IsDone] = 0");
         }
+
+        public Task<List<Todo>> GetItemInDateAsync(DateTime date)
+		{
+            var q = mDatabase.Table<Todo>().Where(k => k.From.Equals(date.Date));
+            return q.ToListAsync();
+		}
 
         public Task<Todo> GetItemAsync(int id)
         {

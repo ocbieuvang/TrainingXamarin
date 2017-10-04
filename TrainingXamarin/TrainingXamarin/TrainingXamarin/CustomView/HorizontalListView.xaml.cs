@@ -31,7 +31,7 @@ namespace TrainingXamarin.CustomView
         }
 
         public static readonly BindableProperty SelectedCommandProperty =
-			BindableProperty.Create("SelectedCommand", typeof(ICommand), typeof(HorizontalListView), null);
+            BindableProperty.Create("SelectedCommand", typeof(ICommand), typeof(HorizontalListView), null);
 
 
         public static void ItemSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -46,29 +46,46 @@ namespace TrainingXamarin.CustomView
 
                 foreach (var item in control.ItemsSource)
                 {
-                    var itemView = new Label()
+                    var stack = new StackLayout()
                     {
-                        WidthRequest = 48,
-                        HeightRequest = 100,
-                        Text = item.DayOfWeek.ToString().Substring(0, 3),
-                        VerticalTextAlignment= TextAlignment.Center
+                        WidthRequest = 45,
+                        Margin = new Thickness(0,5,0,0)
                     };
 
-                    var command = new Command((obj) =>
+                    var itemView = new Label()
+                    {
+                        WidthRequest = 45,
+                        Text = item.DayOfWeek.ToString().Substring(0, 3),
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center,
+                        TextColor = Color.Gray
+                    };
+
+                    var button = new Label()
+                    {
+                        Text = item.Day.ToString("D"),
+						VerticalTextAlignment = TextAlignment.Center,
+						HorizontalTextAlignment = TextAlignment.Center,
+                    };
+
+                    stack.Children.Add(itemView);
+                    stack.Children.Add(button);
+
+                    var command = new Command(() =>
                     {
                         var args = new ItemTappedEventArgs(control.ItemsSource, item);
-                        if(control.SelectedCommand != null)
+                        if (control.SelectedCommand != null)
                         {
                             control.SelectedCommand.Execute(item);
-						}
+                        }
                     });
 
-                    itemView.GestureRecognizers.Add(new TapGestureRecognizer
+                    button.GestureRecognizers.Add(new TapGestureRecognizer
                     {
                         Command = command,
-                        NumberOfTapsRequired = 1
+                        NumberOfTapsRequired = 1,
                     });
-                    control.wrapper.Children.Add(itemView);
+                    control.wrapper.Children.Add(stack);
                 }
             }
         }
