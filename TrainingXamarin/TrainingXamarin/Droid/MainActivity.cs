@@ -23,6 +23,7 @@ namespace TrainingXamarin.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CarouselViewRenderer.Init();
+            Xamarin.FormsMaps.Init(this, bundle);
             LoadApplication(new App());
         }
     }
