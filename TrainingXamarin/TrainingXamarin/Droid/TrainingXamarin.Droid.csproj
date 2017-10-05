@@ -178,6 +178,7 @@
     <AndroidResource Include="Resources\drawable\button.png" />
     <AndroidResource Include="Resources\drawable\header_bg.png" />
     <AndroidResource Include="Resources\drawable\avatar_header.png" />
+    <AndroidResource Include="Resources\drawable\logo_login.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background.png" />

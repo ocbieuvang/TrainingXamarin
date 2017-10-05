@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrainingXamarin.LoginPage" NavigationPage.HasNavigationBar="False">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrainingXamarin.LoginPage" NavigationPage.HasNavigationBar="False" BackgroundImage="background" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
@@ -11,12 +11,13 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Entry Placeholder="Username" x:Name="username" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" />
-        <Entry Placeholder="Password" x:Name="password" IsPassword="true" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
-        <Button x:Name="forgotPasswordButton" Text="Forgot password" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="End" />
+        <Image Source="logo_login.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="150" WidthRequest="150" />
+        <Entry Placeholder="Username" x:Name="username" TextColor="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="Transparent" />
+        <Entry Placeholder="Password" x:Name="password" TextColor="White" IsPassword="true" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="Transparent" />
+        <Button x:Name="forgotPasswordButton" Text="Forgot password" TextColor="White" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalOptions="End" BackgroundColor="Transparent" />
         <Button x:Name="loginButton" Text="Sign in" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="#ff3366" TextColor="White" BorderRadius="0" Clicked="login_Clicked" />
     </Grid>
 </ContentPage>

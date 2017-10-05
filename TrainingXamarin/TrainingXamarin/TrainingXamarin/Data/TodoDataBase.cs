@@ -26,11 +26,15 @@ namespace TrainingXamarin.Data
             return mDatabase.QueryAsync<Todo>("SELECT * FROM [Todo] WHERE [IsDone] = 0");
         }
 
-        public Task<List<Todo>> GetItemInDateAsync(DateTime date)
-		{
-            var q = mDatabase.Table<Todo>().Where(k => k.From.Equals(date.Date));
+        public Task<List<Todo>> GetItemInDateAsync(DateTime dateSelect)
+        {
+            var afterDay = dateSelect.AddDays(1);
+
+            var q = from item in mDatabase.Table<Todo>()
+                    where item.From >= dateSelect && item.From < afterDay
+                    select item;
             return q.ToListAsync();
-		}
+        }
 
         public Task<Todo> GetItemAsync(int id)
         {

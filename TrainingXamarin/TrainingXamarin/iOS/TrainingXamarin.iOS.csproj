@@ -150,6 +150,9 @@
     <ImageAsset Include="Assets.xcassets\header_bg.imageset\header_bg.png" />
     <ImageAsset Include="Assets.xcassets\avatar_header.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\avatar_header.imageset\avatar_header.png" />
+    <ImageAsset Include="Assets.xcassets\icon_calender.imageset\icon_calender.png" />
+    <ImageAsset Include="Assets.xcassets\logo_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\logo_login.imageset\logo_login.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -165,6 +168,7 @@
     <Folder Include="Assets.xcassets\button.imageset\" />
     <Folder Include="Assets.xcassets\header_bg.imageset\" />
     <Folder Include="Assets.xcassets\avatar_header.imageset\" />
+    <Folder Include="Assets.xcassets\logo_login.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

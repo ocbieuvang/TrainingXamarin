@@ -4,8 +4,8 @@
         <ContentPage Padding="10" Title="Intro Page">
             <ContentPage.Content>
                 <StackLayout>
-                    <Button Text="Intro Page" Clicked="navIntroPage" />
-                    <Button Text="Main Page" Clicked="navMainPage" />
+                    <Button Text="Intro Page" Clicked="navIntroPage" BackgroundColor="Transparent" />
+                    <Button Text="Main Page" Clicked="navMainPage" BackgroundColor="Transparent" />
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>

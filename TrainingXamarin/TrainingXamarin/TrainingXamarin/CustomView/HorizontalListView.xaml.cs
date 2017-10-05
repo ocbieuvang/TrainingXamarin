@@ -17,6 +17,8 @@ namespace TrainingXamarin.CustomView
                                                          defaultBindingMode: BindingMode.TwoWay,
                                                          propertyChanged: ItemSourcePropertyChanged);
 
+        private int selectedPosition;
+
         public HorizontalListView()
         {
             InitializeComponent();
@@ -78,6 +80,8 @@ namespace TrainingXamarin.CustomView
                         {
                             control.SelectedCommand.Execute(item);
                         }
+                        button.TextColor = Color.HotPink;
+                        control.wrapper.Children.Contains(button);
                     });
 
                     button.GestureRecognizers.Add(new TapGestureRecognizer
