@@ -12,37 +12,38 @@ namespace TrainingXamarin.TodoCreation
         private DateTime mDateFrom;
         private TimeSpan mTimeTo;
         private DateTime mDateTo;
+        private ContentPage mContentPage;
 
         public TodoCreationViewModel(ContentPage contentPage)
         {
             Todo = new Todo();
-
+            mContentPage = contentPage;
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
             TimeFrom = DateTime.Now.TimeOfDay;
             TimeTo = DateTime.Now.TimeOfDay;
 
-            OnSaveClick = new Command((nothing) =>
-            {
-                if (Todo == null || contentPage == null) return;
-                Todo.From = DateFrom.Add(TimeFrom);
-                Todo.To = DateTo.Add(TimeTo);
+            OnSaveClick = new Command(onSaveClick);
+        }
 
-                if (Todo.From.Second < DateTime.Now.Second ||
-                    Todo.To.Second < DateTime.Now.Second ||
-                    Todo.From.Second > Todo.To.Second ||
-                    String.IsNullOrEmpty(Todo.Title))
-                {
-                    contentPage.DisplayAlert("Warning", 
-                                             "1.Please enter \"Title\"\n" +
-                                             "2.Time To > Date From \n" +
-                                             "3.Time > Time Now", "OK");
-                    return;
-                }
+        public void onSaveClick() {
+			if (Todo == null || mContentPage == null) return;
+			Todo.From = DateFrom.Add(TimeFrom);
+			Todo.To = DateTo.Add(TimeTo);
 
-                App.Database.SaveItemAsync(Todo);
-                contentPage.Navigation.PopAsync();
-            });
+			if (DateTime.Now.CompareTo(Todo.To) > 0 ||
+				Todo.From.CompareTo(Todo.To) > 0 ||
+				String.IsNullOrEmpty(Todo.Title))
+			{
+				mContentPage.DisplayAlert("Warning",
+										 "1.Please enter \"Title\"\n" +
+										 "2.Time To > Date From \n" +
+										 "3.Time To > Time Now", "OK");
+				return;
+			}
+
+			App.Database.SaveItemAsync(Todo);
+			mContentPage.Navigation.PopAsync();
         }
 
         public Todo Todo
