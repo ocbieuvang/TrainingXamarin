@@ -1,5 +1,4 @@
 ﻿using TrainingXamarin.Data;
-using TrainingXamarin.Views.MapPage;
 using Xamarin.Forms;
 
 namespace TrainingXamarin
@@ -12,7 +11,7 @@ namespace TrainingXamarin
         {
             InitializeComponent();
 
-            MainPage = new MapPage();
+            MainPage = new MenuPage();
         }
 
         public static TodoDataBase Database
