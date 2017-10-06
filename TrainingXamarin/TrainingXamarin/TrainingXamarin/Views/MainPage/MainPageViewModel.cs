@@ -21,6 +21,7 @@ namespace TrainingXamarin.Views.MainPage
         private ObservableCollection<DateTime> dayInMonth;
 
         private bool _isRefreshing = false;
+        private bool _isLoading = false;
 
         private ContentPage mainPage;
 
@@ -126,6 +127,16 @@ namespace TrainingXamarin.Views.MainPage
             }
         }
 
+		public bool IsLoading
+		{
+            get { return _isLoading; }
+			set
+			{
+				_isLoading = value;
+				pushPropertyChanged(nameof(IsLoading));
+			}
+		}
+
         public ICommand RefreshCommand
         {
             get
@@ -173,8 +184,10 @@ namespace TrainingXamarin.Views.MainPage
 
         public async void GetLstToDo(DateTime date)
         {
+            IsLoading = true;
             List<Todo> todos = await App.Database.GetItemInDateAsync(date);
             ListToDo = new ObservableCollection<Todo>(todos);
+            IsLoading = false;
         }
 
         public ObservableCollection<Todo> ListToDo
