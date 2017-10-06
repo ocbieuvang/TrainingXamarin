@@ -1,4 +1,5 @@
 ﻿using System;
+using TrainingXamarin.Introduce;
 using Xamarin.Forms;
 
 namespace TrainingXamarin
@@ -14,7 +15,7 @@ namespace TrainingXamarin
 
         void navIntroPage(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new IntroPage());
+            Detail = new NavigationPage(new IntroducePage());
             IsPresented = false;
         }
 

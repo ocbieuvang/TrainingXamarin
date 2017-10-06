@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Windows.Input;
 using TrainingXamarin.Model;
 using TrainingXamarin.Models;
+using TrainingXamarin.TodoCreation;
 using Xamarin.Forms;
 
 namespace TrainingXamarin.Views.MainPage
@@ -21,10 +22,18 @@ namespace TrainingXamarin.Views.MainPage
 
         private bool _isRefreshing = false;
 
+        private ContentPage mainPage;
+
+        internal void OnAppearing()
+        {
+            GetLstToDo(SelectedDate);
+        }
+
         private DateTime SelectedDate = DateTime.Now;
 
-        public MainPageViewModel()
+        public MainPageViewModel(ContentPage page)
         {
+            mainPage = page;
             Items = new ObservableCollection<string>(list_month);
 
             var days = AllDatesInMonth(DateTime.Now.Year, DateTime.Now.Month);
@@ -33,18 +42,35 @@ namespace TrainingXamarin.Views.MainPage
 
             Position = list_month.IndexOf(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month));
 
-            GetLstToDo(DateTime.Now);
+            GetLstToDo(DateTime.Now.AddDays(-1));
+            SelectedDate = DateTime.Now;
 
             ClickCommand = new Command(DateClickedCommand);
 
             Prev_Button_Clicked = new Command(HandleAction_PrevButton);
             Next_Button_Clicked = new Command(HandleAction_NextButton);
+            DeleteToDoCommand = new Command(DeleteWorkToDoCommand);
+        }
+
+        public async void EditToDoCommand(object sender, SelectedItemChangedEventArgs e)
+        {
+            await mainPage.Navigation.PushAsync(new TodoCreationPage((Todo)sender));
+        }
+
+        public async void DeleteWorkToDoCommand(object value)
+        {
+            var action = await mainPage.DisplayAlert("Delete confirm", "Do you really want to delete this todo work?", "Yes", "No");
+            if (action)
+            {
+				await App.Database.DeleteAsync((Todo)value);
+				GetLstToDo(SelectedDate);
+			}
         }
 
         void DateClickedCommand(object value)
         {
-			GetLstToDo((DateTime)value);
-			SelectedDate = (DateTime)value;
+            GetLstToDo((DateTime)value);
+            SelectedDate = (DateTime)value;
         }
 
         public ICommand ClickCommand
@@ -63,30 +89,36 @@ namespace TrainingXamarin.Views.MainPage
             get; private set;
         }
 
-		public bool IsRefreshing
-		{
-			get { return _isRefreshing; }
-			set
-			{
-				_isRefreshing = value;
-				pushPropertyChanged(nameof(IsRefreshing));
-			}
-		}
+        public ICommand DeleteToDoCommand
+        {
+            get;
+            private set;
+        }
 
-		public ICommand RefreshCommand
-		{
-			get
-			{
-				return new Command(() =>
-				{
-					IsRefreshing = true;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                pushPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsRefreshing = true;
 
                     GetLstToDo(SelectedDate);
 
-					IsRefreshing = false;
-				});
-			}
-		}
+                    IsRefreshing = false;
+                });
+            }
+        }
         public ObservableCollection<DateTime> DaysInMonth
         {
             get

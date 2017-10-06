@@ -26,6 +26,17 @@ namespace TrainingXamarin.TodoCreation
             OnSaveClick = new Command(onSaveClick);
         }
 
+        public TodoCreationViewModel(ContentPage contentPage, object value)
+		{
+			Todo = (Todo)value;
+            DateFrom = Todo.From;
+            DateTo = Todo.To;
+            TimeFrom = DateFrom.TimeOfDay;
+			TimeTo = DateTo.TimeOfDay;
+            mContentPage = contentPage;
+			OnSaveClick = new Command(onSaveClick);
+		}
+
         public void onSaveClick() {
 			if (Todo == null || mContentPage == null) return;
 			Todo.From = DateFrom.Add(TimeFrom);

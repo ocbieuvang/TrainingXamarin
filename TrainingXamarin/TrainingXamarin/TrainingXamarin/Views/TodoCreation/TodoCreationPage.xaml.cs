@@ -9,11 +9,19 @@ namespace TrainingXamarin.TodoCreation
     {
         private TodoCreationViewModel mViewModel;
 
-        public TodoCreationPage()
+        public TodoCreationPage(object value)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            mViewModel = new TodoCreationViewModel(this);
+            if (value != null)
+            {
+                mViewModel = new TodoCreationViewModel(this, value);
+            }
+            else
+            {
+                mViewModel = new TodoCreationViewModel(this);
+            }
+
             BindingContext = mViewModel;
         }
     }

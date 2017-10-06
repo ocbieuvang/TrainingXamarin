@@ -4,10 +4,12 @@
       "idiom": "universal"
     },
     {
+      "filename": "icon_calender.png",
       "scale": "1x",
       "idiom": "universal"
     },
     {
+      "filename": "icon_calender.png",
       "scale": "2x",
       "idiom": "universal"
     },
@@ -23,7 +25,7 @@
       "idiom": "iphone"
     },
     {
-      "filename": "icon_calender@2x.png",
+      "filename": "icon_calender.png",
       "scale": "2x",
       "idiom": "iphone"
     },
