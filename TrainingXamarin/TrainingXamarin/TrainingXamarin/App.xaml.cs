@@ -1,4 +1,6 @@
-﻿using TrainingXamarin.Data;
+﻿using System;
+using TrainingXamarin.Data;
+using TrainingXamarin.Model;
 using Xamarin.Forms;
 
 namespace TrainingXamarin
@@ -12,6 +14,17 @@ namespace TrainingXamarin
             InitializeComponent();
 
             MainPage = new MenuPage();
+            for (int i = 0; i < 10000; i++)
+            {
+                Todo todo = new Todo()
+                {
+                    From = DateTime.Now,
+                    To = DateTime.Now.AddHours(1),
+                    Title = "Work" + i,
+                    Description = "Des" + i,
+                };
+                Database.SaveItemAsync(todo);
+            }
         }
 
         public static TodoDataBase Database
@@ -28,8 +41,8 @@ namespace TrainingXamarin
 
         protected override void OnStart()
         {
-            // Handle when your app starts
-        }
+			// Handle when your app starts
+		}
 
         protected override void OnSleep()
         {
