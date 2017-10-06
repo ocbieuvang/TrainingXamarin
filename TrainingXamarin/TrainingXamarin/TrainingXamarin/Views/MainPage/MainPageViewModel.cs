@@ -24,6 +24,8 @@ namespace TrainingXamarin.Views.MainPage
 
         private ContentPage mainPage;
 
+        private Label selectedColorChange;
+
         internal void OnAppearing()
         {
             GetLstToDo(SelectedDate);
@@ -42,14 +44,26 @@ namespace TrainingXamarin.Views.MainPage
 
             Position = list_month.IndexOf(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month));
 
-            GetLstToDo(DateTime.Now.AddDays(-1));
+            GetLstToDo(DateTime.Now);
             SelectedDate = DateTime.Now;
 
             ClickCommand = new Command(DateClickedCommand);
+            ClickCommandChangeColor = new Command(ChangeColorCommand);
 
             Prev_Button_Clicked = new Command(HandleAction_PrevButton);
             Next_Button_Clicked = new Command(HandleAction_NextButton);
             DeleteToDoCommand = new Command(DeleteWorkToDoCommand);
+        }
+
+        private void ChangeColorCommand(object value)
+        {
+            if (selectedColorChange != null)
+            {
+                selectedColorChange.TextColor = Color.Black;
+            }
+            var labelSelected = (Label)value;
+            labelSelected.TextColor = Color.FromHex("ff3366");
+            selectedColorChange = labelSelected;
         }
 
         public async void EditToDoCommand(object sender, SelectedItemChangedEventArgs e)
@@ -62,18 +76,25 @@ namespace TrainingXamarin.Views.MainPage
             var action = await mainPage.DisplayAlert("Delete confirm", "Do you really want to delete this todo work?", "Yes", "No");
             if (action)
             {
-				await App.Database.DeleteAsync((Todo)value);
-				GetLstToDo(SelectedDate);
-			}
+                await App.Database.DeleteAsync((Todo)value);
+                GetLstToDo(SelectedDate);
+            }
         }
 
         void DateClickedCommand(object value)
         {
-            GetLstToDo((DateTime)value);
-            SelectedDate = (DateTime)value;
+            var dateClick = (DateTime)value;
+            GetLstToDo(dateClick);
+            SelectedDate = dateClick;
         }
 
         public ICommand ClickCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand ClickCommandChangeColor
         {
             get;
             private set;

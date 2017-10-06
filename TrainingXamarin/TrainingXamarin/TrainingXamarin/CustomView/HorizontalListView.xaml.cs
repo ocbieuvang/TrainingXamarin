@@ -17,8 +17,6 @@ namespace TrainingXamarin.CustomView
                                                          defaultBindingMode: BindingMode.TwoWay,
                                                          propertyChanged: ItemSourcePropertyChanged);
 
-        private int selectedPosition;
-
         public HorizontalListView()
         {
             InitializeComponent();
@@ -32,8 +30,17 @@ namespace TrainingXamarin.CustomView
             set { SetValue(SelectedCommandProperty, value); }
         }
 
+        public ICommand SelectedChangeColorCommand
+        {
+            get { return (ICommand)GetValue(SelectedChangeColorCommandProperty); }
+            set { SetValue(SelectedChangeColorCommandProperty, value); }
+        }
+
         public static readonly BindableProperty SelectedCommandProperty =
             BindableProperty.Create("SelectedCommand", typeof(ICommand), typeof(HorizontalListView), null);
+
+        public static readonly BindableProperty SelectedChangeColorCommandProperty =
+            BindableProperty.Create("SelectedChangeColorCommandProperty", typeof(ICommand), typeof(HorizontalListView), null);
 
 
         public static void ItemSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -51,7 +58,7 @@ namespace TrainingXamarin.CustomView
                     var stack = new StackLayout()
                     {
                         WidthRequest = 45,
-                        Margin = new Thickness(0,5,0,0)
+                        Margin = new Thickness(0, 5, 0, 0)
                     };
 
                     var itemView = new Label()
@@ -66,8 +73,8 @@ namespace TrainingXamarin.CustomView
                     var button = new Label()
                     {
                         Text = item.Day.ToString("D"),
-						VerticalTextAlignment = TextAlignment.Center,
-						HorizontalTextAlignment = TextAlignment.Center,
+                        VerticalTextAlignment = TextAlignment.Center,
+                        HorizontalTextAlignment = TextAlignment.Center,
                     };
 
                     stack.Children.Add(itemView);
@@ -80,8 +87,10 @@ namespace TrainingXamarin.CustomView
                         {
                             control.SelectedCommand.Execute(item);
                         }
-                        button.TextColor = Color.HotPink;
-                        control.wrapper.Children.Contains(button);
+                        if (control.SelectedChangeColorCommand != null)
+                        {
+                            control.SelectedChangeColorCommand.Execute(button);
+                        }
                     });
 
                     button.GestureRecognizers.Add(new TapGestureRecognizer
