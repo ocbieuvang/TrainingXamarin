@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using TrainingXamarin.Model;
+using TrainingXamarin.Views.MapPage;
 using Xamarin.Forms;
 
 namespace TrainingXamarin.TodoCreation
@@ -24,37 +25,46 @@ namespace TrainingXamarin.TodoCreation
             TimeTo = DateTime.Now.TimeOfDay;
 
             OnSaveClick = new Command(onSaveClick);
+            OnPickLocationClick = new Command(onPickLocationClick);
         }
 
         public TodoCreationViewModel(ContentPage contentPage, object value)
-		{
-			Todo = (Todo)value;
+        {
+            Todo = (Todo)value;
             DateFrom = Todo.From;
             DateTo = Todo.To;
             TimeFrom = DateFrom.TimeOfDay;
-			TimeTo = DateTo.TimeOfDay;
+            TimeTo = DateTo.TimeOfDay;
             mContentPage = contentPage;
-			OnSaveClick = new Command(onSaveClick);
-		}
+            OnSaveClick = new Command(onSaveClick);
+            OnPickLocationClick = new Command(onPickLocationClick);
+        }
 
-        public void onSaveClick() {
-			if (Todo == null || mContentPage == null) return;
-			Todo.From = DateFrom.Add(TimeFrom);
-			Todo.To = DateTo.Add(TimeTo);
 
-			if (DateTime.Now.CompareTo(Todo.To) > 0 ||
-				Todo.From.CompareTo(Todo.To) > 0 ||
-				String.IsNullOrEmpty(Todo.Title))
-			{
-				mContentPage.DisplayAlert("Warning",
-										 "1.Please enter \"Title\"\n" +
-										 "2.Time To > Date From \n" +
-										 "3.Time To > Time Now", "OK");
-				return;
-			}
+        public void onPickLocationClick()
+        {
+            mContentPage.Navigation.PushAsync(new MapPage());
+        }
 
-			App.Database.SaveItemAsync(Todo);
-			mContentPage.Navigation.PopAsync();
+        public void onSaveClick()
+        {
+            if (Todo == null || mContentPage == null) return;
+            Todo.From = DateFrom.Add(TimeFrom);
+            Todo.To = DateTo.Add(TimeTo);
+
+            if (DateTime.Now.CompareTo(Todo.To) > 0 ||
+                Todo.From.CompareTo(Todo.To) > 0 ||
+                String.IsNullOrEmpty(Todo.Title))
+            {
+                mContentPage.DisplayAlert("Warning",
+                                         "1.Please enter \"Title\"\n" +
+                                         "2.Time To > Date From \n" +
+                                         "3.Time To > Time Now", "OK");
+                return;
+            }
+
+            App.Database.SaveItemAsync(Todo);
+            mContentPage.Navigation.PopAsync();
         }
 
         public Todo Todo
@@ -71,6 +81,11 @@ namespace TrainingXamarin.TodoCreation
         }
 
         public ICommand OnSaveClick
+        {
+            protected set; get;
+        }
+
+        public ICommand OnPickLocationClick
         {
             protected set; get;
         }

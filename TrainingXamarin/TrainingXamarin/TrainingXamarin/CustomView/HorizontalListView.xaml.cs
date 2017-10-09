@@ -9,6 +9,7 @@ namespace TrainingXamarin.CustomView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HorizontalListView : Xamarin.Forms.ScrollView
     {
+        private static Label previousButton;
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
                                                          propertyName: "ItemsSource",
                                                          returnType: typeof(ObservableCollection<DateTime>),
@@ -30,18 +31,8 @@ namespace TrainingXamarin.CustomView
             set { SetValue(SelectedCommandProperty, value); }
         }
 
-        public ICommand SelectedChangeColorCommand
-        {
-            get { return (ICommand)GetValue(SelectedChangeColorCommandProperty); }
-            set { SetValue(SelectedChangeColorCommandProperty, value); }
-        }
-
         public static readonly BindableProperty SelectedCommandProperty =
             BindableProperty.Create("SelectedCommand", typeof(ICommand), typeof(HorizontalListView), null);
-
-        public static readonly BindableProperty SelectedChangeColorCommandProperty =
-            BindableProperty.Create("SelectedChangeColorCommandProperty", typeof(ICommand), typeof(HorizontalListView), null);
-
 
         public static void ItemSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -87,10 +78,13 @@ namespace TrainingXamarin.CustomView
                         {
                             control.SelectedCommand.Execute(item);
                         }
-                        if (control.SelectedChangeColorCommand != null)
+
+                        if (previousButton != null)
                         {
-                            control.SelectedChangeColorCommand.Execute(button);
+                            previousButton.TextColor = Color.Black;
                         }
+                        button.TextColor = Color.FromHex("ff3366");
+                        previousButton = button;
                     });
 
                     button.GestureRecognizers.Add(new TapGestureRecognizer
