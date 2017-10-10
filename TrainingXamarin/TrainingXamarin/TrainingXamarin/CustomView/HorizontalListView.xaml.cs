@@ -37,7 +37,7 @@ namespace TrainingXamarin.CustomView
         public static void ItemSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (HorizontalListView)bindable;
-
+            Label labelScrollTo = new Label();
             control.wrapper.Children.Clear();
 
             if (newValue != null)
@@ -68,6 +68,13 @@ namespace TrainingXamarin.CustomView
                         HorizontalTextAlignment = TextAlignment.Center,
                     };
 
+                    if (DateTime.Now.Day == item.Day)
+                    {
+                        labelScrollTo = button;
+                        previousButton = button;
+                        button.TextColor = Color.FromHex("ff3366");
+                    }
+
                     stack.Children.Add(itemView);
                     stack.Children.Add(button);
 
@@ -93,6 +100,10 @@ namespace TrainingXamarin.CustomView
                         NumberOfTapsRequired = 1,
                     });
                     control.wrapper.Children.Add(stack);
+                }
+                if (labelScrollTo != null)
+                {
+                    control.ScrollToAsync(labelScrollTo, ScrollToPosition.Start, true);
                 }
             }
         }

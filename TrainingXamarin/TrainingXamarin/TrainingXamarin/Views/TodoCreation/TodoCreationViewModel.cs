@@ -75,6 +75,14 @@ namespace TrainingXamarin.TodoCreation
             }
 
             App.Database.SaveItemAsync(Todo);
+            if (Todo.IsDone == true)
+            {
+                DependencyService.Get<IAlarm>().CancelAlarm(Todo);
+            }
+            else
+            {
+                DependencyService.Get<IAlarm>().SetAlarm(Todo);
+            }
             mContentPage.Navigation.PopAsync();
         }
 
