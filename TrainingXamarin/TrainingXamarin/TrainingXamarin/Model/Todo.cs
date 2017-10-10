@@ -10,6 +10,7 @@ namespace TrainingXamarin.Model
         private DateTime mFrom;
         private DateTime mTo;
         private bool mIsDone;
+        private string mLocation;
 
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -79,6 +80,19 @@ namespace TrainingXamarin.Model
             get
             {
                 return mIsDone;
+            }
+        }
+
+        public string Location
+        {
+            set
+            {
+                mLocation = value;
+                pushPropertyChanged("Location");
+            }
+            get
+            {
+                return mLocation;
             }
         }
     }

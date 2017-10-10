@@ -25,8 +25,6 @@ namespace TrainingXamarin.Views.MainPage
 
         private ContentPage mainPage;
 
-        private Label selectedColorChange;
-
         internal void OnAppearing()
         {
             GetLstToDo(SelectedDate);
@@ -49,22 +47,10 @@ namespace TrainingXamarin.Views.MainPage
             SelectedDate = DateTime.Now;
 
             ClickCommand = new Command(DateClickedCommand);
-            ClickCommandChangeColor = new Command(ChangeColorCommand);
 
             Prev_Button_Clicked = new Command(HandleAction_PrevButton);
             Next_Button_Clicked = new Command(HandleAction_NextButton);
             DeleteToDoCommand = new Command(DeleteWorkToDoCommand);
-        }
-
-        private void ChangeColorCommand(object value)
-        {
-            if (selectedColorChange != null)
-            {
-                selectedColorChange.TextColor = Color.Black;
-            }
-            var labelSelected = (Label)value;
-            labelSelected.TextColor = Color.FromHex("ff3366");
-            selectedColorChange = labelSelected;
         }
 
         public async void EditToDoCommand(object sender, SelectedItemChangedEventArgs e)
@@ -90,12 +76,6 @@ namespace TrainingXamarin.Views.MainPage
         }
 
         public ICommand ClickCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand ClickCommandChangeColor
         {
             get;
             private set;

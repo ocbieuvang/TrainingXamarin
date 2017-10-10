@@ -11,6 +11,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -23,6 +24,8 @@
                     <Label VerticalOptions="CenterAndExpand" Text="To" Grid.Row="1" Grid.Column="0" />
                     <DatePicker Date="{Binding DateTo}" Grid.Row="1" Grid.Column="1" />
                     <TimePicker Time="{Binding TimeTo}" Grid.Row="1" Grid.Column="2" />
+                    <Entry Placeholder="Enter Location" Text="{Binding Todo.Location}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Button Command="{Binding OnPickLocationClick}" Text="Pick Location" Grid.Row="2" Grid.Column="2" BackgroundColor="#ff3366" TextColor="White"/>
                 </Grid>
                 <Label HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#f5f4f6" />
                 <StackLayout Margin="10, 0" Orientation="Horizontal">

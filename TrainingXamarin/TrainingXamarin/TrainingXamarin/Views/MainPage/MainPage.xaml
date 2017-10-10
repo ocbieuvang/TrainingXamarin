@@ -37,7 +37,7 @@
             <Button Image="arrow_right.png" Command="{Binding Next_Button_Clicked}" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" />
         </Grid>
         <StackLayout Grid.Row="2" BackgroundColor="White" Margin="0,0,0,-10" Spacing="0">
-            <Controls:HorizontalListView x:Name="HorizontalList" ItemsSource="{Binding DaysInMonth}" SelectedCommand="{Binding ClickCommand}" Padding="10,0,10,0" SelectedChangeColorCommand="{Binding ClickCommandChangeColor}" />
+            <Controls:HorizontalListView x:Name="HorizontalList" ItemsSource="{Binding DaysInMonth}" SelectedCommand="{Binding ClickCommand}" Padding="10,0,10,0"/>
         </StackLayout>
         <RelativeLayout Grid.Row="3" BackgroundColor="White" Margin="0">
             <ListView ItemsSource="{Binding ListToDo}" HasUnevenRows="true" Margin="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" IsPullToRefreshEnabled="true" RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}"
