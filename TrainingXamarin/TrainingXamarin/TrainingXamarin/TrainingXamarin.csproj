@@ -104,6 +104,10 @@
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MapPage\MapViewModel.cs" />
+    <Compile Include="Control\AutoCompleteView.cs" />
+    <Compile Include="CustomView\CustomMap.cs" />
+    <Compile Include="GoogleMapPlace.cs" />
+    <Compile Include="GeoMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -119,6 +123,7 @@
     <Folder Include="Views\Introduce\" />
     <Folder Include="Views\TodoCreation\" />
     <Folder Include="Views\MapPage\" />
+    <Folder Include="Control\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CarouselView.FormsPlugin.Abstractions">
@@ -150,6 +155,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Maps">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
