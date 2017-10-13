@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.props')" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\netstandard1.0\Xamarin.Forms.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -84,30 +85,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="CarouselView.FormsPlugin.Abstractions">
-      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.3\lib\Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="CarouselView.FormsPlugin.iOS">
-      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.3\lib\Xamarin.iOS10\CarouselView.FormsPlugin.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="CarouselView.FormsPlugin.Abstractions">
-      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.3\lib\Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="CarouselView.FormsPlugin.iOS">
-      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.3\lib\Xamarin.iOS10\CarouselView.FormsPlugin.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.core">
-      <HintPath>..\packages\SQLitePCLRaw.core.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.sqlite3">
-      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_green">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite-net">
       <HintPath>..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
     </Reference>
@@ -129,11 +106,38 @@
     <Reference Include="Xamarin.Forms.Maps.iOS">
       <HintPath>..\packages\Xamarin.Forms.Maps.2.4.0.282\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Cirrious.FluentLayouts.Touch">
-      <HintPath>..\packages\Cirrious.FluentLayout.2.5.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
-    </Reference>
     <Reference Include="MBAutoComplete">
       <HintPath>..\packages\MBAutoComplete.0.8.3\lib\Xamarin.iOS10\MBAutoComplete.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.CrossPlacePicker.Abstractions">
+      <HintPath>..\packages\Fantacode.Plugin.CrossPlacePicker.1.0.3\lib\Xamarin.iOS10\Plugin.CrossPlacePicker.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.CrossPlacePicker">
+      <HintPath>..\packages\Fantacode.Plugin.CrossPlacePicker.1.0.3\lib\Xamarin.iOS10\Plugin.CrossPlacePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.FluentLayouts.Touch">
+      <HintPath>..\packages\Cirrious.FluentLayout.2.6.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="CarouselView.FormsPlugin.Abstractions">
+      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.5\lib\Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CarouselView.FormsPlugin.iOS">
+      <HintPath>..\packages\CarouselView.FormsPlugin.4.4.5\lib\Xamarin.iOS10\CarouselView.FormsPlugin.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Maps">
+      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.1.0.2\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -200,4 +204,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.282\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.282\build\netstandard1.0\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.7\build\Xamarin.Build.Download.targets')" />
+  <Import Project="..\packages\Xamarin.Google.iOS.Maps.2.1.0.2\build\Xamarin.Google.iOS.Maps.targets" Condition="Exists('..\packages\Xamarin.Google.iOS.Maps.2.1.0.2\build\Xamarin.Google.iOS.Maps.targets')" />
 </Project>

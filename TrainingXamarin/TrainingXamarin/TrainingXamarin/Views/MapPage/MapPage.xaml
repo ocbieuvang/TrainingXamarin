@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns:view="clr-namespace:TrainingXamarin.CustomView" xmlns:local="clr-namespace:TrainingXamarin.Control" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrainingXamarin.Views.MapPage.MapPage">
-    <StackLayout VerticalOptions="StartAndExpand" Padding="30">
-        <!--<local:AutoCompleteView ItemsSource="{Binding ItemsSource}" TextChangedCommand="{Binding TextChanged}" ItemChangedCommand="{Binding ItemChanged}" />-->
-        <view:AutoCompleteView Placeholder="type 'item'" ShowSearchButton="True" SearchBackgroundColor="Blue" SuggestionBackgroundColor="Yellow" TextChangedCommand="{Binding TextChanged}" Suggestions="{Binding Items, Mode=TwoWay}" SearchCommand="{Binding ItemChanged}" />
+    <StackLayout VerticalOptions="StartAndExpand" Padding="10">
+        <view:AutoCompleteView Placeholder="Location" ShowSearchButton="True" SearchBackgroundColor="Transparent" SuggestionBackgroundColor="White" TextChangedCommand="{Binding TextChanged}" Suggestions="{Binding Items, Mode=TwoWay}" SearchCommand="{Binding ItemChanged}" />
         <Button Command="{Binding AcceptClick}" Text="Accept" BackgroundColor="#ff3366" />
         <view:CustomMap PositionChanged="{Binding PositionChanged}" WidthRequest="350" HeightRequest="400" x:Name="MyMap" IsShowingUser="true" MapType="Hybrid" />
     </StackLayout>
