@@ -18,14 +18,13 @@ namespace TrainingXamarin.TodoCreation
         public TodoCreationViewModel(ContentPage contentPage)
         {
             Todo = new Todo();
-            mContentPage = contentPage;
+
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
             TimeFrom = DateTime.Now.TimeOfDay;
             TimeTo = DateTime.Now.TimeOfDay;
 
-            OnSaveClick = new Command(onSaveClick);
-            OnPickLocationClick = new Command(onPickLocationClick);
+            InitCommon(contentPage);
         }
 
         public TodoCreationViewModel(ContentPage contentPage, object value)
@@ -35,9 +34,21 @@ namespace TrainingXamarin.TodoCreation
             DateTo = Todo.To;
             TimeFrom = DateFrom.TimeOfDay;
             TimeTo = DateTo.TimeOfDay;
+
+            InitCommon(contentPage);
+        }
+
+
+        public void InitCommon(ContentPage contentPage)
+        {
             mContentPage = contentPage;
             OnSaveClick = new Command(onSaveClick);
             OnPickLocationClick = new Command(onPickLocationClick);
+
+            MessagingCenter.Subscribe<string>(this, "TODO", (location) =>
+            {
+                if (location != null) Todo.Location = location;
+            });
         }
 
 
