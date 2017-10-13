@@ -16,12 +16,14 @@ namespace TrainingXamarin.Views.MapPage
         private ContentPage _contentPage;
         private ObservableCollection<string> itemsSource;
         private Position positionChanged;
+        private string location;
 
         public MapViewModel(ContentPage contentPage)
         {
             _contentPage = contentPage;
             TextChanged = new Command(OnTextChanged);
             ItemChanged = new Command(OnItemChanged);
+            AcceptClick = new Command(OnAcceptClick);
         }
 
         async Task<string> fnDownloadString(string strUrl)
@@ -39,6 +41,15 @@ namespace TrainingXamarin.Views.MapPage
                 strResultData = "Exception";
             }
             return strResultData;
+        }
+
+        async void OnAcceptClick() {
+            if(location == null || location == string.Empty) {
+                await _contentPage.DisplayAlert("Warning", "Please Enter Location", "OK");
+                return;
+            }
+            MessagingCenter.Send(location, "TODO");
+            await _contentPage.Navigation.PopAsync();
         }
 
         async void OnTextChanged(object newValue)
@@ -69,6 +80,7 @@ namespace TrainingXamarin.Views.MapPage
 
         async void OnItemChanged(object newValue)
         {
+            location = (string)newValue;
             string json = await fnDownloadString(strGeoCodingUrl + "?address=" + (string)newValue);
             if (json == "Exception")
             {
@@ -88,6 +100,12 @@ namespace TrainingXamarin.Views.MapPage
         {
             get; set;
         }
+
+        public ICommand AcceptClick
+        {
+            get; set;
+        }
+
 
         public ObservableCollection<string> ItemsSource
         {
