@@ -5,6 +5,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Xamarin.Forms.Maps;
+using System.Collections.Generic;
 
 namespace TrainingXamarin.Views.MapPage
 {
@@ -17,6 +18,7 @@ namespace TrainingXamarin.Views.MapPage
         private ObservableCollection<string> itemsSource;
         private Position positionChanged;
         private string location;
+        List<string> items;
 
         public MapViewModel(ContentPage contentPage)
         {
@@ -24,6 +26,20 @@ namespace TrainingXamarin.Views.MapPage
             TextChanged = new Command(OnTextChanged);
             ItemChanged = new Command(OnItemChanged);
             AcceptClick = new Command(OnAcceptClick);
+        }
+
+
+        public List<string> Items
+        {
+            set
+            {
+                items = value;
+                pushPropertyChanged("Items");
+            }
+            get
+            {
+                return items;
+            }
         }
 
         async Task<string> fnDownloadString(string strUrl)
@@ -43,8 +59,10 @@ namespace TrainingXamarin.Views.MapPage
             return strResultData;
         }
 
-        async void OnAcceptClick() {
-            if(location == null || location == string.Empty) {
+        async void OnAcceptClick()
+        {
+            if (location == null || location == string.Empty)
+            {
                 await _contentPage.DisplayAlert("Warning", "Please Enter Location", "OK");
                 return;
             }
@@ -70,7 +88,8 @@ namespace TrainingXamarin.Views.MapPage
                     strPredictiveText[index] = objPred.description;
                     index++;
                 }
-                ItemsSource = new ObservableCollection<string>(strPredictiveText);
+                //ItemsSource = new ObservableCollection<string>(strPredictiveText);
+                Items = new List<string>(strPredictiveText);
             }
             catch
             {
@@ -81,14 +100,21 @@ namespace TrainingXamarin.Views.MapPage
         async void OnItemChanged(object newValue)
         {
             location = (string)newValue;
-            string json = await fnDownloadString(strGeoCodingUrl + "?address=" + (string)newValue);
-            if (json == "Exception")
+            try
             {
-                return;
+                string json = await fnDownloadString(strGeoCodingUrl + "?address=" + (string)newValue);
+                if (json == "Exception")
+                {
+                    return;
 
+                }
+                GeoMap objGeo = JsonConvert.DeserializeObject<GeoMap>(json);
+                PositionChanged = new Position(objGeo.results[0].geometry.location.lat, objGeo.results[0].geometry.location.lng);
             }
-            GeoMap objGeo = JsonConvert.DeserializeObject<GeoMap>(json);
-            PositionChanged = new Position(objGeo.results[0].geometry.location.lat, objGeo.results[0].geometry.location.lng);
+            catch
+            {
+                await _contentPage.DisplayAlert("Warning", "Unable to process at this moment!!!", "OK");
+            }
         }
 
         public ICommand TextChanged

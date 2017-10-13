@@ -109,6 +109,7 @@
     <Compile Include="GoogleMapPlace.cs" />
     <Compile Include="GeoMap.cs" />
     <Compile Include="IAlarm.cs" />
+    <Compile Include="CustomView\AutoCompleteView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
