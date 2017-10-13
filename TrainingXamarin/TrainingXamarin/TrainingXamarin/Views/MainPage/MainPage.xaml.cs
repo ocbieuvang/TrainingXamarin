@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using CarouselView.FormsPlugin.Abstractions;
-using TrainingXamarin.Model;
-using TrainingXamarin.Models;
 using TrainingXamarin.TodoCreation;
 using TrainingXamarin.Views.MainPage;
 using Xamarin.Forms;

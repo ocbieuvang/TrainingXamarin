@@ -10,6 +10,7 @@ namespace TrainingXamarin.CustomView
     public partial class HorizontalListView : Xamarin.Forms.ScrollView
     {
         private static Label previousButton;
+        private static Label labelScrollTo;
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
                                                          propertyName: "ItemsSource",
                                                          returnType: typeof(ObservableCollection<DateTime>),
@@ -37,7 +38,6 @@ namespace TrainingXamarin.CustomView
         public static void ItemSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (HorizontalListView)bindable;
-            Label labelScrollTo = new Label();
             control.wrapper.Children.Clear();
 
             if (newValue != null)
@@ -101,10 +101,7 @@ namespace TrainingXamarin.CustomView
                     });
                     control.wrapper.Children.Add(stack);
                 }
-                if (labelScrollTo != null)
-                {
-                    control.ScrollToAsync(labelScrollTo, ScrollToPosition.Start, true);
-                }
+                control.ScrollToAsync(labelScrollTo, ScrollToPosition.Start, true);
             }
         }
     }

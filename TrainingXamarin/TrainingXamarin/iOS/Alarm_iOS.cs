@@ -18,7 +18,13 @@ namespace TrainingXamarin.iOS
         {
             var notification = new UILocalNotification();
 
-            UIApplication.SharedApplication.CancelLocalNotification(notification); 
+            foreach(UILocalNotification noti in UIApplication.SharedApplication.ScheduledLocalNotifications)
+            {
+                if (noti.FireDate == ConvertDateTimeToNSDate(work.From))
+                {
+                    UIApplication.SharedApplication.CancelLocalNotification(noti);        
+                }
+            }
         }
 
         public void SetAlarm(Todo work)
@@ -28,7 +34,7 @@ namespace TrainingXamarin.iOS
             DateTime newDate = new DateTime(2001, 1, 1, 0, 0, 0);
             var secondToDate = (work.From - DateTime.Now).TotalSeconds;
 
-            notification.FireDate = NSDate.FromTimeIntervalSinceNow(secondToDate);
+            notification.FireDate = ConvertDateTimeToNSDate(work.From);
 
 			notification.AlertAction = "To do reminder";
             notification.AlertBody = work.Title + " need to be done!";
@@ -38,6 +44,14 @@ namespace TrainingXamarin.iOS
             notification.SoundName = UILocalNotification.DefaultSoundName;
 
 			UIApplication.SharedApplication.ScheduleLocalNotification(notification);
+        }
+
+        public NSDate ConvertDateTimeToNSDate(DateTime date)
+        {
+            DateTime newDate = TimeZone.CurrentTimeZone.ToLocalTime(
+                new DateTime(2001, 1, 1, 0, 0, 0));
+            return NSDate.FromTimeIntervalSinceReferenceDate(
+                (date - newDate).TotalSeconds);
         }
     }
 }
