@@ -2,6 +2,8 @@
 using Android.Content.PM;
 using Android.OS;
 using CarouselView.FormsPlugin.Android;
+using Android.Support.V4.App;
+using TaskStackBuilder = Android.Support.V4.App.TaskStackBuilder;
 
 namespace TrainingXamarin.Droid
 {

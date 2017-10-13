@@ -41,6 +41,15 @@ namespace TrainingXamarin.Data
             return mDatabase.Table<Todo>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
+        public Task<List<Todo>> GetListWorkFromNow()
+        {
+            var toDay = DateTime.Now;
+            var q = from item in mDatabase.Table<Todo>()
+                    where item.From >= toDay
+                    select item;
+            return q.ToListAsync();
+        }
+
         public Task<int> SaveItemAsync(Todo item)
         {
             if (item.ID != 0)
