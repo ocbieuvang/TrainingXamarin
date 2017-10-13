@@ -64,6 +64,7 @@ namespace TrainingXamarin.Views.MainPage
             if (action)
             {
                 await App.Database.DeleteAsync((Todo)value);
+                DependencyService.Get<IAlarm>().CancelAlarm((Todo)value);
                 GetLstToDo(SelectedDate);
             }
         }
