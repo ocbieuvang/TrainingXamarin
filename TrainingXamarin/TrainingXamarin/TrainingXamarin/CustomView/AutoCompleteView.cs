@@ -140,7 +140,10 @@ namespace TrainingXamarin.CustomView
         {
             _availableSuggestions = new ObservableCollection<object>();
             _stkBase = new StackLayout();
-            var innerLayout = new StackLayout();
+            var innerLayout = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal
+            };
             _entText = new Entry
             {
                 HorizontalOptions = TextHorizontalOptions,

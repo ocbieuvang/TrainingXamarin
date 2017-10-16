@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Plugin.CrossPlacePicker;
 using TrainingXamarin.Model;
 using TrainingXamarin.Views.MapPage;
 using Xamarin.Forms;
@@ -52,9 +53,20 @@ namespace TrainingXamarin.TodoCreation
         }
 
 
-        public void onPickLocationClick()
+        public async void onPickLocationClick()
         {
-            mContentPage.Navigation.PushAsync(new MapPage());
+            try
+            {
+                var result = await CrossPlacePicker.Current.Display();
+                if (result != null)
+                {
+                    Todo.Location = result.Name;
+                }
+            }
+            catch (Exception ex)
+            {
+                await mContentPage.DisplayAlert("Error", ex.ToString(), "Oops");
+            }
         }
 
         public void onSaveClick()

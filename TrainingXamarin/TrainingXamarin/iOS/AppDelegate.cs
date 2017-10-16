@@ -1,6 +1,7 @@
 using Foundation;
 using UIKit;
 using CarouselView.FormsPlugin.iOS;
+using Google.Maps;
 
 namespace TrainingXamarin.iOS
 {
@@ -11,6 +12,9 @@ namespace TrainingXamarin.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            var apikey = "AIzaSyCXfHhoBNynUtBdSigDfO0lClJjJi2EKvo";
+            PlacesClient.ProvideApiKey(apikey);
+            MapServices.ProvideAPIKey(apikey);
             CarouselViewRenderer.Init();
             Xamarin.FormsMaps.Init();
 

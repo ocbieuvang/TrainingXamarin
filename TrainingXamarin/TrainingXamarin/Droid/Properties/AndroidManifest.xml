@@ -13,6 +13,7 @@
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<application android:label="TrainingXamarin">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyB6y2KHMlhk3c6PqPWGF3JlTRNzmVp7cWA" />
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAZA66hF4PTdwaCOlRvBcp4dYsXdbTcNLM" />
 		<receiver android:name="com.framgia.trainingxamarin.AlarmNotificationReceiver" android:enabled="true">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
