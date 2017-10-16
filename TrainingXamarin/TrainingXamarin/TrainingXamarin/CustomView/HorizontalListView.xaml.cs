@@ -68,7 +68,7 @@ namespace TrainingXamarin.CustomView
                         HorizontalTextAlignment = TextAlignment.Center,
                     };
 
-                    if (DateTime.Now.Day == item.Day)
+                    if (DateTime.Now.Day == item.Day && DateTime.Now.Month == item.Month)
                     {
                         labelScrollTo = button;
                         previousButton = button;
@@ -101,7 +101,7 @@ namespace TrainingXamarin.CustomView
                     });
                     control.wrapper.Children.Add(stack);
                 }
-                if (labelScrollTo != null)
+                if (DateTime.Now.Day.ToString() == labelScrollTo.Text)
                 {
                     control.ScrollToAsync(labelScrollTo, ScrollToPosition.Start, true);
                 }

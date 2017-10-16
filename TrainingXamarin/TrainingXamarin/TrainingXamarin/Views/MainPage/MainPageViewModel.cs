@@ -51,6 +51,12 @@ namespace TrainingXamarin.Views.MainPage
             Prev_Button_Clicked = new Command(HandleAction_PrevButton);
             Next_Button_Clicked = new Command(HandleAction_NextButton);
             DeleteToDoCommand = new Command(DeleteWorkToDoCommand);
+            ShowMenuClick = new Command(HandleShowMenu);
+        }
+
+        private void HandleShowMenu(object value)
+        {
+            (App.Current.MainPage as MasterDetailPage).IsPresented = true;
         }
 
         public async void EditToDoCommand(object sender, SelectedItemChangedEventArgs e)
@@ -92,6 +98,12 @@ namespace TrainingXamarin.Views.MainPage
         }
 
         public ICommand DeleteToDoCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand ShowMenuClick
         {
             get;
             private set;

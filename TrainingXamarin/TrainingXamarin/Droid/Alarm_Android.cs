@@ -29,7 +29,7 @@ namespace TrainingXamarin.Droid
             myIntent.PutExtra("work", work.Title);
             pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, work.ID, myIntent, PendingIntentFlags.UpdateCurrent);
             TimeSpan span = work.From - DateTime.Now;
-            long schedule = (long)(Java.Lang.JavaSystem.CurrentTimeMillis() + span.Milliseconds);
+            long schedule = (long)(Java.Lang.JavaSystem.CurrentTimeMillis() + span.TotalMilliseconds);
             manager.Set(AlarmType.RtcWakeup, schedule, pendingIntent);
         }
     }

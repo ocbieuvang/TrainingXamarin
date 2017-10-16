@@ -208,6 +208,7 @@
     <AndroidResource Include="Resources\drawable\avatar_header.png" />
     <AndroidResource Include="Resources\drawable\logo_login.png" />
     <AndroidResource Include="Resources\drawable\xamarin_icon.png" />
+    <AndroidResource Include="Resources\drawable\hamburger.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background.png" />
