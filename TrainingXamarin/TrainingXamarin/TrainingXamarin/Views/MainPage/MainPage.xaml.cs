@@ -26,15 +26,5 @@ namespace TrainingXamarin
             base.OnAppearing();
             viewModel.OnAppearing();
         }
-
-        public void EditToDoCommand(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new TodoCreationPage(((ListView)sender).SelectedItem));
-        }
-
-        public void Add_Work_Button(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new TodoCreationPage(null));
-        }
     }
 }
