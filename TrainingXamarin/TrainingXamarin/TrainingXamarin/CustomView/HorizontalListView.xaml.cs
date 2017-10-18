@@ -38,6 +38,7 @@ namespace TrainingXamarin.CustomView
         {
             var control = (HorizontalListView)bindable;
             Label labelScrollTo = new Label();
+            Label labelFirst = new Label();
             control.wrapper.Children.Clear();
 
             if (newValue != null)
@@ -74,6 +75,13 @@ namespace TrainingXamarin.CustomView
                         previousButton = button;
                         button.TextColor = Color.FromHex("ff3366");
                     }
+                    else
+                    {
+                        if (Convert.ToInt16(item.Day.ToString("D")) == 1)
+                        {
+                            labelFirst = button;
+                        }
+                    }
 
                     stack.Children.Add(itemView);
                     stack.Children.Add(button);
@@ -103,7 +111,11 @@ namespace TrainingXamarin.CustomView
                 }
                 if (DateTime.Now.Day.ToString() == labelScrollTo.Text)
                 {
-                    control.ScrollToAsync(labelScrollTo, ScrollToPosition.Start, true);
+                    control.ScrollToAsync(labelScrollTo, ScrollToPosition.Center, true);
+                }
+                else
+                {
+                    control.ScrollToAsync(labelFirst, ScrollToPosition.Start, true);
                 }
             }
         }

@@ -110,6 +110,7 @@
     <Compile Include="GeoMap.cs" />
     <Compile Include="IAlarm.cs" />
     <Compile Include="CustomView\AutoCompleteView.cs" />
+    <Compile Include="CustomView\CustomListView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

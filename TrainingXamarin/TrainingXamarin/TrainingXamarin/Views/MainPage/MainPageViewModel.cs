@@ -50,8 +50,26 @@ namespace TrainingXamarin.Views.MainPage
 
             Prev_Button_Clicked = new Command(HandleAction_PrevButton);
             Next_Button_Clicked = new Command(HandleAction_NextButton);
-            DeleteToDoCommand = new Command(DeleteWorkToDoCommand);
             ShowMenuClick = new Command(HandleShowMenu);
+            AddWorkButton = new Command(HandleAddWorkButton);
+            EditToDoCommand = new Command(HandleEditTodoCommand);
+        }
+
+        private async void HandleAddWorkButton()
+        {
+            if (SelectedDate >= DateTime.Now.Date)
+            {
+                Todo todo = new Todo
+                {
+                    From = SelectedDate,
+                    To = SelectedDate
+                };
+                await mainPage.Navigation.PushAsync(new TodoCreationPage(todo));
+            }
+            else
+            {
+                await mainPage.DisplayAlert("Alart", "Date create must greater than now!", "OK");
+            }
         }
 
         private void HandleShowMenu(object value)
@@ -59,9 +77,20 @@ namespace TrainingXamarin.Views.MainPage
             (App.Current.MainPage as MasterDetailPage).IsPresented = true;
         }
 
-        public async void EditToDoCommand(object sender, SelectedItemChangedEventArgs e)
+        public async void HandleEditTodoCommand(object value)
         {
-            await mainPage.Navigation.PushAsync(new TodoCreationPage((Todo)sender));
+            var item = ((ListView)value).SelectedItem;
+            Todo todo = ((Todo)item);
+            var action = await mainPage.DisplayActionSheet(todo.Title, "Cancel", null, "Edit", "Delete");
+            switch (action)
+            {
+                case "Edit":
+                    await mainPage.Navigation.PushAsync(new TodoCreationPage(item));
+                    break;
+                case "Delete":
+                    DeleteWorkToDoCommand(item);
+                    break;
+            }
         }
 
         public async void DeleteWorkToDoCommand(object value)
@@ -97,13 +126,19 @@ namespace TrainingXamarin.Views.MainPage
             get; private set;
         }
 
-        public ICommand DeleteToDoCommand
+        public ICommand ShowMenuClick
         {
             get;
             private set;
         }
 
-        public ICommand ShowMenuClick
+        public ICommand AddWorkButton
+        {
+            get;
+            private set;
+        }
+
+        public ICommand EditToDoCommand
         {
             get;
             private set;
@@ -119,15 +154,15 @@ namespace TrainingXamarin.Views.MainPage
             }
         }
 
-		public bool IsLoading
-		{
+        public bool IsLoading
+        {
             get { return _isLoading; }
-			set
-			{
-				_isLoading = value;
-				pushPropertyChanged(nameof(IsLoading));
-			}
-		}
+            set
+            {
+                _isLoading = value;
+                pushPropertyChanged(nameof(IsLoading));
+            }
+        }
 
         public ICommand RefreshCommand
         {
