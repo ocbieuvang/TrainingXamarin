@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using CarouselView.FormsPlugin.Abstractions;
+using Xamarin.Forms;
 
 namespace TrainingXamarin.Introduce
 {
@@ -16,9 +18,9 @@ namespace TrainingXamarin.Introduce
             Carousel_View.PositionSelected += PositionSelected;
         }
 
-        public void PositionSelected(object sender, int position)
+        public void PositionSelected(object sender, EventArgs e)
         {
-            mViewModel.PositionSelected(sender, position);
+            mViewModel.PositionSelected(sender, ((PositionSelectedEventArgs)e).NewValue);
         }
 
     }
