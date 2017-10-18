@@ -166,6 +166,8 @@
     <ImageAsset Include="Assets.xcassets\logo_login.imageset\logo_login.png" />
     <ImageAsset Include="Assets.xcassets\hamburger.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\hamburger.imageset\hamburger.png" />
+    <ImageAsset Include="Assets.xcassets\icon_x.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_x.imageset\x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -183,6 +185,7 @@
     <Folder Include="Assets.xcassets\avatar_header.imageset\" />
     <Folder Include="Assets.xcassets\logo_login.imageset\" />
     <Folder Include="Assets.xcassets\hamburger.imageset\" />
+    <Folder Include="Assets.xcassets\icon_x.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

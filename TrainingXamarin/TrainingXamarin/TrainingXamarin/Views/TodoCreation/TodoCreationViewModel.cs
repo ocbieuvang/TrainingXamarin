@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using Plugin.CrossPlacePicker;
 using TrainingXamarin.Model;
-using TrainingXamarin.Views.MapPage;
 using Xamarin.Forms;
 
 namespace TrainingXamarin.TodoCreation
@@ -45,6 +44,8 @@ namespace TrainingXamarin.TodoCreation
             mContentPage = contentPage;
             OnSaveClick = new Command(onSaveClick);
             OnPickLocationClick = new Command(onPickLocationClick);
+            OnBackClick = new Command(onBackClick);
+
 
             MessagingCenter.Subscribe<string>(this, "TODO", (location) =>
             {
@@ -52,6 +53,10 @@ namespace TrainingXamarin.TodoCreation
             });
         }
 
+        public void onBackClick()
+        {
+            mContentPage.Navigation.PopAsync();
+        }
 
         public async void onPickLocationClick()
         {
@@ -109,6 +114,11 @@ namespace TrainingXamarin.TodoCreation
             {
                 return mTodo;
             }
+        }
+
+        public ICommand OnBackClick
+        {
+            protected set; get;
         }
 
         public ICommand OnSaveClick
