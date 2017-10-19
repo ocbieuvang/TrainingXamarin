@@ -80,14 +80,12 @@ namespace TrainingXamarin.TodoCreation
             Todo.From = DateFrom.Add(TimeFrom);
             Todo.To = DateTo.Add(TimeTo);
 
-            if (DateTime.Now.CompareTo(Todo.To) > 0 ||
-                Todo.From.CompareTo(Todo.To) > 0 ||
+            if (Todo.From.CompareTo(Todo.To) > 0 ||
                 String.IsNullOrEmpty(Todo.Title))
             {
                 mContentPage.DisplayAlert("Warning",
                                          "1.Please enter \"Title\"\n" +
-                                         "2.Time To > Date From \n" +
-                                         "3.Time To > Time Now", "OK");
+                                         "2.Time To > Date From" , "OK");
                 return;
             }
 
