@@ -25,8 +25,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Image="arrow_left.png" Command="{Binding Prev_Button_Clicked}" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" />
-            <controls:CarouselViewControl x:Name="myCarousel" AnimateTransition="true" IsSwipingEnabled="false" Orientation="Horizontal" Position="{Binding Position}" ItemsSource="{Binding Items}" ShowIndicators="false" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0"
-                Grid.Column="1" Margin="0,15,0,0">
+            <controls:CarouselViewControl x:Name="myCarousel" AnimateTransition="false" IsSwipingEnabled="false" Orientation="Horizontal" Position="{Binding Position}" ItemsSource="{Binding Items}" ShowIndicators="false" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0"
+                Grid.Column="1" Margin="0,15,0,0" Grid.ColumnSpan="1">
                 <controls:CarouselViewControl.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -42,7 +42,7 @@
         </StackLayout>
         <RelativeLayout Grid.Row="3" BackgroundColor="White" Margin="0">
             <Controls:CustomListView ItemsSource="{Binding ListToDo}" HasUnevenRows="true" Margin="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" IsPullToRefreshEnabled="true" RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}"
-                SelectedCommand="{Binding EditToDoCommand}" >
+                SelectedCommand="{Binding EditToDoCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
